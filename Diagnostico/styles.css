@@ -1,0 +1,150 @@
+.requerido {
+    color: #0b6e4f;
+}
+
+body {
+    font-family: 'Karla', sans-serif;
+    background-color: #e8f5e9;
+}
+
+.container {
+    max-width: 600px;
+    width: 100%;
+}
+
+.card {
+    width: 100%;
+}
+
+.form-control {
+    width: 100%;
+}
+
+.form-check-input {
+    margin-right: 5px;
+}
+
+.d-flex.gap-2 {
+    justify-content: space-between;
+}
+
+
+.btn-success {
+    background-color: #0b6e4f;
+    border: none;
+}
+
+.btn-success:hover {
+    background-color: #094d36;
+}
+
+/* Estilo base de la opción */
+.query-option {
+    border: 1px solid #b8b8b8;
+    border-radius: 8px;
+    padding: 10px;
+    text-align: center;
+    width: 100%;
+    cursor: pointer;
+    transition: all 0.3s ease;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    gap: 10px;
+    background-color: white;
+    /* Fondo normal */
+}
+
+/* Cuando está seleccionada */
+.query-option.selected {
+    background-color: #d3eadd;
+    /* Color de fondo cuando está seleccionada */
+    border-color: #0b6e4f;
+
+}
+
+/* Estilo del radio button */
+.query-option input[type="radio"] {
+    appearance: none;
+    width: 18px;
+    height: 18px;
+    border: 1px solid #b1b1b1;
+    border-radius: 50%;
+    outline: none;
+    cursor: pointer;
+    position: relative;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}
+
+/* Punto dentro del radio button cuando está seleccionado */
+.query-option input[type="radio"]:checked {
+    background-color: white;
+    border: 2px solid #0b6e4f;
+}
+
+.query-option input[type="radio"]:checked::before {
+    content: "";
+    width: 10px;
+    height: 10px;
+    background-color: #0b6e4f;
+    border-radius: 50%;
+    position: absolute;
+}
+
+
+
+/* Efecto hover */
+.query-option:hover {
+    border-color: #0b6e4f;
+    background-color: #e8f5e9;
+}
+
+/* 🚫 Evitar que el textarea sea redimensionable */
+textarea {
+    resize: none;
+}
+
+/* 🎨 Efecto hover en los campos */
+.form-control:hover,
+.form-check-input:hover {
+    border-color: #0b6e4f;
+    box-shadow: 0 0 5px hsl(187, 24%, 22%);
+}
+
+/* ✅ Checkbox con color exacto */
+.form-check-input:checked {
+    background-color: #0b6e4f;
+    border-color: #0b6e4f;
+}
+
+/* 🚀 Mantener los radio en línea en pantallas grandes */
+@media (max-width: 576px) {
+    .query-type-container {
+        flex-direction: column;
+        gap: 10px;
+    }
+}
+.alert-success-popup {
+    position: absolute;
+    top: 20px;
+    left: 50%;
+    transform: translateX(-50%);
+    background-color: #155724;
+    color: #fff;
+    padding: 15px 20px;
+    border-radius: 5px;
+    box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+    font-size: 16px;
+    font-weight: bold;
+    display: none; /* Oculto por defecto */
+    z-index: 1000;
+}
+
+.alert-success-popup.show {
+    display: block;
+}
+
+
+
