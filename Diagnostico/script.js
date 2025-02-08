@@ -1,5 +1,7 @@
 document.getElementById("contactForm").addEventListener("submit", function (event) {
-    event.preventDefault(); // Evita el envío automático
+    event.preventDefault(); // Evita que el formulario se envíe por defecto
+
+    let formData = new FormData(this); // Captura los datos del formulario
 
     let firstName = document.getElementById("firstName");
     let lastName = document.getElementById("lastName");
@@ -41,28 +43,41 @@ document.getElementById("contactForm").addEventListener("submit", function (even
         isValid = false;
     }
 
-    // 🔹 Validación de los radio buttons
-    let isQuerySelected = Array.from(queryOptions).some(radio => radio.checked);
-    if (!isQuerySelected) {
+    // 🔹 Validación de los radio buttons (Tipo de consulta)
+    let selectedQuery = document.querySelector('input[name="queryType"]:checked');
+    if (!selectedQuery) {
         let queryError = document.createElement("p");
         queryError.textContent = "Selecciona un tipo de consulta.";
         queryError.className = "error-message";
         queryError.style.color = "red";
         queryOptions[0].parentNode.parentNode.insertAdjacentElement("afterend", queryError);
         isValid = false;
+    } else {
+        formData.append("queryType", selectedQuery.value);
     }
 
-    // 🔹 Si todo es válido, mostrar mensaje de éxito
+    // 🔹 Si todo es válido, enviar formulario y mostrar mensaje de éxito
     if (isValid) {
-        successMessage.classList.remove("d-none");
-        document.getElementById("successMessage").classList.add("show");
+        fetch("enviar.php", {
+            method: "POST",
+            body: formData
+        })
+            .then(response => response.text()) // Obtiene la respuesta en texto
+            .then(data => {
+                console.log("Respuesta del servidor:", data);
 
-        // Ocultar el mensaje después de 5 segundos
-        setTimeout(() => {
-            successMessage.classList.add("d-none");
-        }, 5000);
+                // ✅ Muestra el mensaje de éxito
+                let successMessage = document.getElementById("successMessage");
+                successMessage.innerHTML = `<strong>✔ ¡Mensaje enviado!</strong> <br> ${data}`;
+                successMessage.classList.remove("d-none");
+                // Ocultar mensaje después de 5 segundos
+                setTimeout(() => {
+                    successMessage.classList.add("d-none");
+                }, 5000);
 
-        // Reiniciar el formulario después del envío
-        document.getElementById("contactForm").reset();
+                // Reiniciar formulario
+                document.getElementById("contactForm").reset();
+            })
+            .catch(error => console.error("Error en la solicitud:", error));
     }
 });
