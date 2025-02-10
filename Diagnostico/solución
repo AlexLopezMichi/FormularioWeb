@@ -17,11 +17,11 @@ Además de construir el frontend del formulario de contacto, también deberás i
 
 Tus usuarios deberían poder:
 
-- Completar el formulario
+- Completar el formulario y ver un mensaje de éxito al enviarlo correctamente
 - Recibir mensajes de validación del formulario si:
   - Se ha omitido un campo obligatorio
 - Completar el formulario solo usando su teclado
-- Tener los inputs, mensajes de error anunciados en su lector de pantalla
+- Tener los inputs, mensajes de error y el mensaje de éxito anunciados en su lector de pantalla
 - Ver el diseño óptimo para la interfaz dependiendo del tamaño de la pantalla de su dispositivo
 - Ver estados de hover y focus para todos los elementos interactivos en la página
 - Enviar el formulario y almacenar los datos en la base de datos.

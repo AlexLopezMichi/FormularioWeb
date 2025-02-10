@@ -36,7 +36,7 @@ $lastName   = $conn->real_escape_string(trim($_POST['Apellido']));
 $email      = $conn->real_escape_string(trim($_POST['Correo']));
 $queryType  = $conn->real_escape_string(trim($_POST['queryType']));
 $message    = $conn->real_escape_string(trim($_POST['Mensaje']));
-$consent    = isset($_POST['consent']) ? 1 : 0; // Convertir en booleano
+$consent    = isset($_POST['consent']) ? 1 : 0;
 
 
 

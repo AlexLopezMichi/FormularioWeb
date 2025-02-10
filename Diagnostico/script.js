@@ -56,7 +56,7 @@ document.getElementById("contactForm").addEventListener("submit", function (even
         formData.append("queryType", selectedQuery.value);
     }
 
-    // 🔹 Si todo es válido, enviar formulario y mostrar mensaje de éxito
+    // 🔹 Si todo es válido, mostrar mensaje de éxito
     if (isValid) {
         fetch("enviar.php", {
             method: "POST",
@@ -65,19 +65,20 @@ document.getElementById("contactForm").addEventListener("submit", function (even
             .then(response => response.text()) // Obtiene la respuesta en texto
             .then(data => {
                 console.log("Respuesta del servidor:", data);
-
-                // ✅ Muestra el mensaje de éxito
-                let successMessage = document.getElementById("successMessage");
-                successMessage.innerHTML = `<strong>✔ ¡Mensaje enviado!</strong> <br> ${data}`;
                 successMessage.classList.remove("d-none");
-                // Ocultar mensaje después de 5 segundos
+                document.getElementById("successMessage").classList.add("show");
+
+                // Ocultar el mensaje después de 5 segundos
                 setTimeout(() => {
                     successMessage.classList.add("d-none");
                 }, 5000);
 
-                // Reiniciar formulario
+                // Reiniciar el formulario después del envío
                 document.getElementById("contactForm").reset();
             })
             .catch(error => console.error("Error en la solicitud:", error));
     }
+
+    // 🔹 Si todo es válido, enviar formulario y mostrar mensaje de éxito
+
 });
